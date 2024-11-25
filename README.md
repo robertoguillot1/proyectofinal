@@ -43,7 +43,7 @@ Bootstrap: For a responsive and clean user interface.
 
 # Installation
 
-Backend Setup
+### Backend Setup
 Clone the repository:
 
 git clone https://github.com/robertoguillot1/proyectofinal.git
@@ -57,12 +57,12 @@ Start the server:
 python manage.py runserver
 
 
-Frontend Setup
+### Frontend Setup
 Navigate to the frontend folder:
-bash
-Copiar código
+
 cd ../frontend
-Install dependencies:
+
+### Install dependencies:
 
 npm install -g @angular/cli
 npm install
@@ -103,8 +103,8 @@ This screenshot showcases the Advanced Search feature, providing a user-friendly
 
 # Contributors
 
-Roberto Guillot
-Ever Perez
+Roberto Guillot,
+Ever Perez,
 Kerlon Causado
 
 
