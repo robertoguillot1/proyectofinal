@@ -1,0 +1,76 @@
+<div class="card">
+    <h2>Update Payment</h2>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="p-fluid grid">
+        <!-- Order Dropdown -->
+        <div class="field col-12 md:col-6">
+          <label for="id_orden" class="p-d-block">Order</label>
+          <p-dropdown
+            id="id_orden"
+            [options]="ordenes"
+            formControlName="id_orden"
+            placeholder="Select an order"
+            optionLabel="label"
+            optionValue="id">
+          </p-dropdown>
+          <small *ngIf="form.get('id_orden')?.invalid && form.get('id_orden')?.touched" class="p-error">
+            Order is required.
+          </small>
+        </div>
+  
+        <!-- Payment Method Dropdown -->
+        <div class="field col-12 md:col-6">
+          <label for="metodo_pago" class="p-d-block">Payment Method</label>
+          <p-dropdown
+            id="metodo_pago"
+            [options]="metodosPago"
+            formControlName="metodo_pago"
+            placeholder="Select a payment method"
+            optionLabel="label"
+            optionValue="value">
+          </p-dropdown>
+          <small *ngIf="form.get('metodo_pago')?.invalid && form.get('metodo_pago')?.touched" class="p-error">
+            Payment method is required.
+          </small>
+        </div>
+  
+        <!-- Payment Date -->
+        <div class="field col-12 md:col-6">
+          <label for="fecha_pago" class="p-d-block">Payment Date</label>
+          <p-calendar
+            id="fecha_pago"
+            formControlName="fecha_pago"
+            [showTime]="true"
+            hourFormat="24"
+            placeholder="Select payment date">
+          </p-calendar>
+          <small *ngIf="form.get('fecha_pago')?.invalid && form.get('fecha_pago')?.touched" class="p-error">
+            Payment date is required.
+          </small>
+        </div>
+  
+        <!-- Amount Input -->
+        <div class="field col-12 md:col-6">
+          <label for="valor_pago" class="p-d-block">Amount</label>
+          <p-inputNumber
+            id="valor_pago"
+            formControlName="valor_pago"
+            mode="currency"
+            currency="USD"
+            locale="en-US"
+            placeholder="Enter amount">
+          </p-inputNumber>
+          <small *ngIf="form.get('valor_pago')?.invalid && form.get('valor_pago')?.touched" class="p-error">
+            Amount is required.
+          </small>
+        </div>
+      </div>
+  
+      <!-- Buttons -->
+      <div class="p-d-flex p-jc-end p-mt-4">
+        <button pButton label="Update" type="submit" [disabled]="form.invalid" class="p-button-primary p-mr-2"></button>
+        <button pButton label="Cancel" type="button" class="p-button-secondary" (click)="cancel()"></button>
+      </div>
+    </form>
+  </div>
+  

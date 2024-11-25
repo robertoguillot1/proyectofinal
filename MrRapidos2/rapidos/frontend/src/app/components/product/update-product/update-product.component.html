@@ -1,0 +1,95 @@
+<div class="card">
+    <h2>Update Product</h2>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="p-fluid grid">
+        <!-- Product Name -->
+        <div class="field col-12 md:col-6">
+          <label for="nombre" class="p-d-block">Product Name</label>
+          <div class="p-inputgroup">
+            <span class="p-inputgroup-addon">
+              <i class="pi pi-tag"></i>
+            </span>
+            <input
+              id="nombre"
+              type="text"
+              pInputText
+              placeholder="Enter product name"
+              formControlName="nombre"
+            />
+          </div>
+          <small *ngIf="form.get('nombre')?.invalid && form.get('nombre')?.touched" class="p-error">
+            Product name is required and must not exceed 100 characters.
+          </small>
+        </div>
+  
+        <!-- Base Price -->
+        <div class="field col-12 md:col-6">
+          <label for="precio_base" class="p-d-block">Base Price</label>
+          <div class="p-inputgroup">
+            <span class="p-inputgroup-addon">
+              <i class="pi pi-dollar"></i>
+            </span>
+            <p-inputNumber
+              id="precio_base"
+              formControlName="precio_base"
+              mode="currency"
+              currency="USD"
+            ></p-inputNumber>
+          </div>
+          <small *ngIf="form.get('precio_base')?.invalid && form.get('precio_base')?.touched" class="p-error">
+            Base price is required and must be greater than or equal to 0.
+          </small>
+        </div>
+  
+        <!-- Description -->
+        <div class="field col-12">
+          <label for="descripcion" class="p-d-block">Description</label>
+          <div class="p-inputgroup">
+            <span class="p-inputgroup-addon">
+              <i class="pi pi-align-left"></i>
+            </span>
+            <textarea
+              id="descripcion"
+              pInputTextarea
+              formControlName="descripcion"
+              rows="4"
+              style="resize: none; overflow: auto; height: 100px; width: 70%;"
+            ></textarea>
+          </div>
+          <small *ngIf="form.get('descripcion')?.invalid && form.get('descripcion')?.touched" class="p-error">
+            Description is required and must not exceed 255 characters.
+          </small>
+        </div>
+  
+        <!-- Active Status -->
+        <div class="field col-12 md:col-6">
+          <p-checkbox
+            formControlName="activo"
+            binary="true"
+            label="Active"
+          ></p-checkbox>
+        </div>
+      </div>
+  
+      <!-- Buttons -->
+      <div class="p-d-flex p-jc-end p-mt-4">
+        <button
+          type="submit"
+          pButton
+          label="Update"
+          icon="pi pi-check"
+          class="p-button-primary p-mr-2"
+          [disabled]="form.invalid"
+        ></button>
+        <button
+          type="button"
+          pButton
+          label="Cancel"
+          icon="pi pi-times"
+          class="p-button-secondary"
+          (click)="cancel()"
+        ></button>
+      </div>
+    </form>
+  </div>
+  

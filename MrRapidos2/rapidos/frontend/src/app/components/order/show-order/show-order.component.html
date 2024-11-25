@@ -1,0 +1,63 @@
+<p-card class="w-12 h-full">
+  <ng-template pTemplate="header">
+      <div class="flex justify-content-between flex-wrap">
+          <h3 class="ml-4">
+              Order List
+          </h3>
+          <div class="mt-2 mr-2">
+              <a 
+                  pButton 
+                  pRipple
+                  label="Add Order" 
+                  icon="pi pi-plus"
+                  class="bg-cyan-600"
+                  [routerLink]="['/orders/new']">
+              </a>
+          </div>
+      </div>
+  </ng-template>
+
+  <!-- Order table -->
+  <p-table [value]="orders">
+      <ng-template pTemplate="header">
+          <tr>
+              <th>Customer</th>
+              <th>Employee</th>
+              <th>Date</th>
+              <th>Status</th>
+              <th>Total</th>
+              <th class="flex justify-content-center flex-wrap">Actions</th>
+          </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-order>
+          <tr>
+              <td>{{ order.id_cliente }}</td>
+              <td>{{ order.id_empleado }}</td>
+              <td>{{ order.fecha_orden | date }}</td>
+              <td>{{ order.estado }}</td>
+              <td>{{ order.total }}</td>
+              <td>
+                  <!-- Edit button -->
+                  <a 
+                      pButton 
+                      pRipple
+                      icon="pi pi-sync"
+                      severity="warning"
+                      class="mr-1"
+                      [routerLink]="['/orders/edit', order.id]">
+                  </a>
+
+                  <!-- Delete button -->
+                  <button 
+                      pButton 
+                      pRipple
+                      severity="danger"
+                      icon="pi pi-eraser"
+                      class="mr-1"
+                      (click)="deleteOrder(order.id)">
+                  </button>
+              </td>
+          </tr>
+      </ng-template>
+  </p-table>
+</p-card>

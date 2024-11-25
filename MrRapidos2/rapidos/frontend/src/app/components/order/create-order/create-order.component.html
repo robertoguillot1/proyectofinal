@@ -1,0 +1,144 @@
+<p-card header="Create Order" class="p-p-4">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="p-fluid grid">
+          <!-- Client Selection -->
+          <div class="field col-12 md:col-6">
+              <label for="id_cliente" class="p-d-block">Client</label>
+              <div class="p-inputgroup">
+                  <span class="p-inputgroup-addon">
+                      <i class="pi pi-user"></i>
+                  </span>
+                  <p-dropdown
+                      [options]="clientes"
+                      optionLabel="nombre"
+                      optionValue="id" 
+                      formControlName="id_cliente"
+                      placeholder="Select a Client"
+                      class="p-d-block"
+                      [style]="{ width: '100%' }"
+                  ></p-dropdown>
+              </div>
+              <small 
+                  *ngIf="form.controls['id_cliente']?.invalid && form.controls['id_cliente']?.touched" 
+                  class="p-error">
+                  Client is required.
+              </small>
+          </div>
+
+          <!-- Employee Selection -->
+          <div class="field col-12 md:col-6">
+              <label for="id_empleado" class="p-d-block">Employee</label>
+              <div class="p-inputgroup">
+                  <span class="p-inputgroup-addon">
+                      <i class="pi pi-id-card"></i>
+                  </span>
+                  <p-dropdown
+                      [options]="empleados"
+                      optionLabel="nombre"
+                      optionValue="id" 
+                      formControlName="id_empleado"
+                      placeholder="Select an Employee"
+                      class="p-d-block"
+                      [style]="{ width: '100%' }"
+                  ></p-dropdown>
+              </div>
+              <small 
+                  *ngIf="form.controls['id_empleado']?.invalid && form.controls['id_empleado']?.touched" 
+                  class="p-error">
+                  Employee is required.
+              </small>
+          </div>
+
+          <!-- Order Date -->
+          <div class="field col-12 md:col-6">
+              <label for="fecha_orden" class="p-d-block">Order Date</label>
+              <div class="p-inputgroup">
+                  <span class="p-inputgroup-addon">
+                      <i class="pi pi-calendar"></i>
+                  </span>
+                  <p-calendar 
+                      id="fecha_orden" 
+                      formControlName="fecha_orden" 
+                      [showTime]="true" 
+                      hourFormat="24" 
+                      placeholder="Select order date" 
+                      class="p-d-block">
+                  </p-calendar>
+              </div>
+              <small 
+                  *ngIf="form.controls['fecha_orden']?.invalid && form.controls['fecha_orden']?.touched" 
+                  class="p-error">
+                  Order date is required.
+              </small>
+          </div>
+
+          <!-- Order State -->
+          <div class="field col-12 md:col-6">
+              <label for="estado" class="p-d-block">State</label>
+              <div class="p-inputgroup">
+                  <span class="p-inputgroup-addon">
+                      <i class="pi pi-flag"></i>
+                  </span>
+                  <p-dropdown 
+                      id="estado" 
+                      [options]="estados" 
+                      formControlName="estado" 
+                      placeholder="Select a State" 
+                      class="p-d-block"
+                      [style]="{ width: '100%' }"
+                  ></p-dropdown>
+              </div>
+              <small 
+                  *ngIf="form.controls['estado']?.invalid && form.controls['estado']?.touched" 
+                  class="p-error">
+                  State is required.
+              </small>
+          </div>
+
+          <!-- Total Amount -->
+          <div class="field col-12 md:col-6">
+              <label for="total" class="p-d-block">Total</label>
+              <div class="p-inputgroup">
+                  <span class="p-inputgroup-addon">
+                      <i class="pi pi-dollar"></i>
+                  </span>
+                  <p-inputNumber 
+                      id="total" 
+                      formControlName="total" 
+                      [min]="0" 
+                      mode="currency" 
+                      currency="USD" 
+                      locale="en-US" 
+                      placeholder="Enter total amount" 
+                      [style]="{ width: '100%' }"
+                  ></p-inputNumber>
+              </div>
+              <small 
+                  *ngIf="form.controls['total']?.invalid && form.controls['total']?.touched" 
+                  class="p-error">
+                  Valid total is required.
+              </small>
+          </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="p-d-flex p-jc-end p-mt-4">
+          <button 
+              pButton 
+              type="submit" 
+              label="Save" 
+              icon="pi pi-check" 
+              class="p-button-primary p-mr-2" 
+              [disabled]="form.invalid">
+          </button>
+          <button 
+              pButton 
+              type="button" 
+              label="Cancel" 
+              icon="pi pi-times" 
+              class="p-button-secondary" 
+              (click)="onCancel()">
+          </button>
+      </div>
+  </form>
+</p-card>

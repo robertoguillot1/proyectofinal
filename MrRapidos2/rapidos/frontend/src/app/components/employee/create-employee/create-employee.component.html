@@ -1,0 +1,136 @@
+<p-card header="Create Employee" class="p-p-4">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="p-fluid grid">
+          <!-- Employee Name -->
+          <div class="field col-12 md:col-6">
+              <label for="nombre" class="p-d-block">Name</label>
+              <div class="p-inputgroup">
+                  <span class="p-inputgroup-addon">
+                      <i class="pi pi-user"></i>
+                  </span>
+                  <input 
+                      id="nombre" 
+                      type="text" 
+                      pInputText 
+                      formControlName="nombre" 
+                      placeholder="Enter employee name" 
+                      class="p-inputtext">
+              </div>
+              <small 
+                  *ngIf="form.controls['nombre']?.invalid && form.controls['nombre']?.touched" 
+                  class="p-error">
+                  Name is required.
+              </small>
+          </div>
+
+          <!-- Phone -->
+          <div class="field col-12 md:col-6">
+              <label for="telefono" class="p-d-block">Phone</label>
+              <div class="p-inputgroup">
+                  <span class="p-inputgroup-addon">
+                      <i class="pi pi-phone"></i>
+                  </span>
+                  <input 
+                      id="telefono" 
+                      type="text" 
+                      pInputText 
+                      formControlName="telefono" 
+                      placeholder="Enter phone number" 
+                      class="p-inputtext">
+              </div>
+              <small 
+                  *ngIf="form.controls['telefono']?.invalid && form.controls['telefono']?.touched" 
+                  class="p-error">
+                  Valid phone is required.
+              </small>
+          </div>
+
+          <!-- Email -->
+          <div class="field col-12 md:col-6">
+              <label for="email" class="p-d-block">Email</label>
+              <div class="p-inputgroup">
+                  <span class="p-inputgroup-addon">
+                      <i class="pi pi-envelope"></i>
+                  </span>
+                  <input 
+                      id="email" 
+                      type="email" 
+                      pInputText 
+                      formControlName="email" 
+                      placeholder="Enter email address" 
+                      class="p-inputtext">
+              </div>
+              <small 
+                  *ngIf="form.controls['email']?.invalid && form.controls['email']?.touched" 
+                  class="p-error">
+                  Valid email is required.
+              </small>
+          </div>
+
+          <!-- Address -->
+          <div class="field col-12 md:col-6">
+              <label for="direccion" class="p-d-block">Address</label>
+              <div class="p-inputgroup">
+                  <span class="p-inputgroup-addon">
+                      <i class="pi pi-map-marker"></i>
+                  </span>
+                  <input 
+                      id="direccion" 
+                      type="text" 
+                      pInputText 
+                      formControlName="direccion" 
+                      placeholder="Enter address" 
+                      class="p-inputtext">
+              </div>
+              <small 
+                  *ngIf="form.controls['direccion']?.invalid && form.controls['direccion']?.touched" 
+                  class="p-error">
+                  Address is required.
+              </small>
+          </div>
+
+          <!-- Role -->
+          <div class="field col-12 md:col-6">
+              <label for="rol" class="p-d-block">Role</label>
+              <div class="p-inputgroup">
+                  <span class="p-inputgroup-addon">
+                      <i class="pi pi-briefcase"></i>
+                  </span>
+                  <p-dropdown 
+                      id="rol" 
+                      [options]="roles" 
+                      formControlName="rol" 
+                      placeholder="Select a role" 
+                      class="p-d-block"
+                      [style]="{ width: '100%' }">
+                  </p-dropdown>
+              </div>
+              <small 
+                  *ngIf="form.controls['rol']?.invalid && form.controls['rol']?.touched" 
+                  class="p-error">
+                  Role is required.
+              </small>
+          </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="p-d-flex p-jc-end p-mt-4">
+          <button 
+              pButton 
+              type="submit" 
+              label="Save" 
+              icon="pi pi-check" 
+              [disabled]="form.invalid" 
+              class="p-button-primary p-mr-2">
+          </button>
+          <button 
+              pButton 
+              type="button" 
+              label="Cancel" 
+              icon="pi pi-times" 
+              class="p-button-secondary" 
+              (click)="onCancel()">
+          </button>
+      </div>
+  </form>
+</p-card>

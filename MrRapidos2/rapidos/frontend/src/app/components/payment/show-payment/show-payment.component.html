@@ -1,0 +1,57 @@
+<p-card class="w-12 h-full">
+  <ng-template pTemplate="header">
+      <div class="flex justify-content-between flex-wrap">
+          <h3 class="ml-4">
+              Payment List
+          </h3>
+          <div class="mt-2 mr-2">
+              <a 
+                  pButton 
+                  pRipple
+                  label="Add Payment" 
+                  icon="pi pi-plus"
+                  class="bg-cyan-600"
+                  [routerLink]="['/payments/new']">
+              </a>
+          </div>
+      </div>
+  </ng-template>
+
+  <p-table [value]="payments">
+      <ng-template pTemplate="header">
+          <tr>
+              <th>Order ID</th>
+              <th>Payment Method</th>
+              <th>Payment Date</th>
+              <th>Amount</th>
+              <th class="flex justify-content-center flex-wrap">Actions</th>
+          </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-payment>
+          <tr>
+              <td>{{ payment.id_orden }}</td>
+              <td>{{ payment.metodo_pago }}</td>
+              <td>{{ payment.fecha_pago | date }}</td>
+              <td>{{ payment.valor_pago }}</td>
+              <td>
+                  <a 
+                      pButton 
+                      pRipple
+                      icon="pi pi-sync"
+                      severity="warning"
+                      class="mr-1"
+                      [routerLink]="['/payments/edit', payment.id]">
+                  </a>
+                  <button 
+                      pButton 
+                      pRipple
+                      severity="danger"
+                      icon="pi pi-eraser"
+                      class="mr-1"
+                      (click)="deletePayment(payment.id)">
+                  </button>
+              </td>
+          </tr>
+      </ng-template>
+  </p-table>
+</p-card>

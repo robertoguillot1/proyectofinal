@@ -1,0 +1,105 @@
+<div class="card">
+    <h2>Update Order</h2>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="p-fluid grid">
+        <!-- Cliente Dropdown -->
+        <div class="field col-12 md:col-6">
+          <label for="id_cliente" class="p-d-block">Client</label>
+          <p-dropdown
+            id="id_cliente"
+            [options]="clientes"
+            formControlName="id_cliente"
+            placeholder="Select a client"
+            optionLabel="label"
+            [showClear]="true"
+          ></p-dropdown>
+          <small *ngIf="form.get('id_cliente')?.invalid && form.get('id_cliente')?.touched" class="p-error">
+            Client is required.
+          </small>
+        </div>
+  
+        <!-- Empleado Dropdown -->
+        <div class="field col-12 md:col-6">
+          <label for="id_empleado" class="p-d-block">Employee</label>
+          <p-dropdown
+            id="id_empleado"
+            [options]="empleados"
+            formControlName="id_empleado"
+            placeholder="Select an employee"
+            optionLabel="label"
+            [showClear]="true"
+          ></p-dropdown>
+          <small *ngIf="form.get('id_empleado')?.invalid && form.get('id_empleado')?.touched" class="p-error">
+            Employee is required.
+          </small>
+        </div>
+  
+        <!-- Fecha Orden -->
+        <div class="field col-12 md:col-6">
+          <label for="fecha_orden" class="p-d-block">Order Date</label>
+          <p-calendar
+            id="fecha_orden"
+            formControlName="fecha_orden"
+            [showTime]="true"
+            hourFormat="24"
+            placeholder="Select order date"
+          ></p-calendar>
+          <small *ngIf="form.get('fecha_orden')?.invalid && form.get('fecha_orden')?.touched" class="p-error">
+            Order date is required.
+          </small>
+        </div>
+  
+        <!-- Estado Dropdown -->
+        <div class="field col-12 md:col-6">
+          <label for="estado" class="p-d-block">State</label>
+          <p-dropdown
+            id="estado"
+            [options]="estados"
+            formControlName="estado"
+            placeholder="Select a state"
+            [showClear]="true"
+          ></p-dropdown>
+          <small *ngIf="form.get('estado')?.invalid && form.get('estado')?.touched" class="p-error">
+            State is required.
+          </small>
+        </div>
+  
+        <!-- Total Input -->
+        <div class="field col-12 md:col-6">
+          <label for="total" class="p-d-block">Total</label>
+          <p-inputNumber
+            id="total"
+            formControlName="total"
+            [min]="0"
+            mode="currency"
+            currency="USD"
+            placeholder="Enter total amount"
+          ></p-inputNumber>
+          <small *ngIf="form.get('total')?.invalid && form.get('total')?.touched" class="p-error">
+            Total must be a positive number.
+          </small>
+        </div>
+      </div>
+  
+      <!-- Buttons -->
+      <div class="p-d-flex p-jc-end p-mt-4">
+        <button
+          type="submit"
+          pButton
+          label="Update"
+          icon="pi pi-check"
+          class="p-button-primary p-mr-2"
+          [disabled]="form.invalid"
+        ></button>
+        <button
+          type="button"
+          pButton
+          label="Cancel"
+          icon="pi pi-times"
+          class="p-button-secondary"
+          (click)="cancel()"
+        ></button>
+      </div>
+    </form>
+  </div>
+  

@@ -1,0 +1,99 @@
+<p-card header="Create Payment" class="p-p-4">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="p-fluid grid">
+          <!-- Order Dropdown -->
+          <div class="field col-12 md:col-6">
+              <label for="id_orden" class="p-d-block">Order</label>
+              <div class="p-inputgroup">
+                  <span class="p-inputgroup-addon">
+                      <i class="pi pi-file"></i>
+                  </span>
+                  <div [style]="{ flexGrow: '1' }">
+                      <p-dropdown 
+                          [options]="ordenes" 
+                          optionLabel="id" 
+                          formControlName="id_orden"
+                          placeholder="Select an order"
+                          [style]="{ width: '100%' }">
+                      </p-dropdown>
+                  </div>
+              </div>
+          </div>
+
+          <!-- Payment Method Dropdown -->
+          <div class="field col-12 md:col-6">
+              <label for="metodo_pago" class="p-d-block">Payment Method</label>
+              <div class="p-inputgroup">
+                  <span class="p-inputgroup-addon">
+                      <i class="pi pi-credit-card"></i>
+                  </span>
+                  <div [style]="{ flexGrow: '1' }">
+                      <p-dropdown 
+                          [options]="metodosPago" 
+                          optionLabel="label" 
+                          formControlName="metodo_pago"
+                          placeholder="Select a payment method"
+                          [style]="{ width: '100%' }">
+                      </p-dropdown>
+                  </div>
+              </div>
+          </div>
+
+          <!-- Payment Date -->
+          <div class="field col-12 md:col-6">
+              <label for="fecha_pago" class="p-d-block">Payment Date</label>
+              <div class="p-inputgroup">
+                  <span class="p-inputgroup-addon">
+                      <i class="pi pi-calendar"></i>
+                  </span>
+                  <div [style]="{ flexGrow: '1' }">
+                      <p-calendar 
+                          formControlName="fecha_pago" 
+                          [showTime]="true" 
+                          hourFormat="24"
+                          placeholder="Select payment date"
+                          [style]="{ width: '100%' }">
+                      </p-calendar>
+                  </div>
+              </div>
+          </div>
+
+          <!-- Amount Input -->
+          <div class="field col-12 md:col-6">
+              <label for="valor_pago" class="p-d-block">Amount</label>
+              <div class="p-inputgroup">
+                  <span class="p-inputgroup-addon">
+                      <i class="pi pi-dollar"></i>
+                  </span>
+                  <div [style]="{ flexGrow: '1', display: 'flex', alignItems: 'center' }">
+                      <p-inputNumber 
+                          formControlName="valor_pago" 
+                          mode="currency" 
+                          currency="USD" 
+                          locale="en-US"
+                          [style]="{ width: '100%' }">
+                      </p-inputNumber>
+                  </div>
+              </div>
+          </div>
+      </div>
+
+      <!-- Buttons -->
+      <div class="p-d-flex p-jc-end p-mt-4">
+          <button 
+              pButton 
+              label="Save" 
+              type="submit" 
+              [disabled]="form.invalid" 
+              class="p-button-primary p-mr-2">
+          </button>
+          <button 
+              pButton 
+              label="Cancel" 
+              type="button" 
+              (click)="onCancel()" 
+              class="p-button-secondary">
+          </button>
+      </div>
+  </form>
+</p-card>

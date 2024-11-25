@@ -1,0 +1,58 @@
+<p-card class="w-12 h-full">
+    <ng-template pTemplate="header">
+      <div class="flex justify-content-between flex-wrap">
+        <h3 class="ml-4">
+          Order Details List
+        </h3>
+        <div class="mt-2 mr-2">
+          <a 
+            pButton 
+            pRipple
+            label="Add Order Detail" 
+            icon="pi pi-plus"
+            class="bg-cyan-600"
+            [routerLink]="['/order-details/new']">
+          </a>
+        </div>
+      </div>
+    </ng-template>
+  
+    <p-table [value]="orderdetails">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Order ID</th>
+          <th>Product ID</th>
+          <th>Quantity</th>
+          <th>Unit Price</th>
+          <th class="flex justify-content-center flex-wrap">Actions</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-detail>
+        <tr>
+          <td>{{ detail.id_orden }}</td>
+          <td>{{ detail.id_producto }}</td>
+          <td>{{ detail.cantidad }}</td>
+          <td>{{ detail.precio_unitario }}</td>
+          <td>
+            <a 
+              pButton 
+              pRipple
+              icon="pi pi-sync"
+              severity="warning"
+              class="mr-1"
+              [routerLink]="['/order-details/edit', detail.id]">
+            </a>
+            <button 
+              pButton 
+              pRipple
+              severity="danger"
+              icon="pi pi-eraser"
+              class="mr-1"
+              (click)="deleteOrderDetails(detail.id)">
+            </button>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </p-card>
+  

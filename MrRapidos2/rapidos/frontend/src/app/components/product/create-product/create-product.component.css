@@ -1,0 +1,33 @@
+/* Estilo para el área de texto Description */
+.custom-textarea {
+    resize: none; /* Evita que el usuario pueda redimensionar */
+    overflow-y: auto; /* Barra de desplazamiento vertical si el contenido excede */
+    height: 120px; /* Altura fija */
+    width: 100%; /* Asegura que ocupe todo el ancho del contenedor */
+}
+
+/* Estilo para el checkbox Active */
+.p-checkbox-style .p-checkbox-box {
+    width: 24px; /* Ajusta el tamaño del checkbox */
+    height: 24px; /* Ajusta el tamaño del checkbox */
+    border-radius: 4px; /* Esquinas redondeadas */
+    border: 2px solid #007bff; /* Color del borde */
+    background-color: #f8f9fa; /* Fondo claro */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.p-checkbox-style .p-checkbox-box:hover {
+    background-color: #e9ecef; /* Fondo al pasar el cursor */
+}
+
+.p-checkbox-style .p-checkbox-box.p-highlight {
+    background-color: #007bff; /* Fondo al estar seleccionado */
+    border-color: #007bff; /* Borde al estar seleccionado */
+}
+
+.p-checkbox-style .p-checkbox-box .p-checkbox-icon {
+    color: #ffffff; /* Color del icono del check */
+    font-size: 14px; /* Tamaño del check */
+}

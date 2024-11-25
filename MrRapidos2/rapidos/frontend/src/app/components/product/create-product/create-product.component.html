@@ -1,0 +1,109 @@
+<p-card header="Create Product" class="p-p-4">
+  <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+      <div class="p-fluid grid">
+          <!-- Product Name -->
+          <div class="field col-12 md:col-6">
+              <label for="nombre" class="p-d-block">Product Name</label>
+              <div class="p-inputgroup">
+                  <span class="p-inputgroup-addon">
+                      <i class="pi pi-tag"></i>
+                  </span>
+                  <input 
+                      id="nombre" 
+                      type="text" 
+                      pInputText 
+                      formControlName="nombre" 
+                      placeholder="Enter product name" 
+                      class="p-inputtext">
+              </div>
+              <small 
+                  *ngIf="productForm.get('nombre')?.invalid && productForm.get('nombre')?.touched" 
+                  class="p-error">
+                  Name is required and must be less than 100 characters.
+              </small>
+          </div>
+
+          <!-- Base Price -->
+          <div class="field col-12 md:col-6">
+              <label for="precio_base" class="p-d-block">Base Price</label>
+              <div class="p-inputgroup">
+                  <span class="p-inputgroup-addon">
+                      <i class="pi pi-dollar"></i>
+                  </span>
+                  <p-inputNumber 
+                      id="precio_base" 
+                      formControlName="precio_base" 
+                      mode="currency" 
+                      currency="USD" 
+                      placeholder="Enter base price"
+                      [style]="{ width: '100%' }">
+                  </p-inputNumber>
+              </div>
+              <small 
+                  *ngIf="productForm.get('precio_base')?.hasError('min') && productForm.get('precio_base')?.touched" 
+                  class="p-error">
+                  Price must be a positive number.
+              </small>
+          </div>
+
+          <!-- Description -->
+          <div class="field col-12">
+              <label for="descripcion" class="p-d-block">Description</label>
+              <div class="p-inputgroup">
+                  <span class="p-inputgroup-addon">
+                      <i class="pi pi-info-circle"></i>
+                  </span>
+                  <textarea 
+                      id="descripcion" 
+                      pInputTextarea 
+                      formControlName="descripcion" 
+                      placeholder="Enter product description" 
+                      rows="4" 
+                      class="p-inputtext custom-textarea">
+                  </textarea>
+              </div>
+              <small 
+                  *ngIf="productForm.get('descripcion')?.invalid && productForm.get('descripcion')?.touched" 
+                  class="p-error">
+                  Description is required.
+              </small>
+          </div>
+
+          <!-- Active Status -->
+          <div class="field col-12 md:col-6">
+              <label for="activo" class="p-d-block">Active</label>
+              <div class="p-inputgroup">
+                  <span class="p-inputgroup-addon">
+                      <i class="pi pi-check"></i>
+                  </span>
+                  <div [style]="{ flexGrow: '1', display: 'flex', alignItems: 'center' }">
+                      <p-checkbox 
+                          id="activo" 
+                          binary="true" 
+                          formControlName="activo" 
+                          class="p-checkbox-style">
+                      </p-checkbox>
+                  </div>
+              </div>
+          </div>
+      </div>
+
+      <!-- Buttons -->
+      <div class="p-d-flex p-jc-end p-mt-4">
+          <button 
+              pButton 
+              label="Save" 
+              type="submit" 
+              [disabled]="productForm.invalid" 
+              class="p-button-primary p-mr-2">
+          </button>
+          <button 
+              pButton 
+              label="Cancel" 
+              type="button" 
+              (click)="onCancel()" 
+              class="p-button-secondary">
+          </button>
+      </div>
+  </form>
+</p-card>

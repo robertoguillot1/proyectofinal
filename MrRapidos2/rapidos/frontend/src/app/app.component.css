@@ -1,0 +1,76 @@
+/* Estilos generales */
+body {
+    margin: 0; /* Elimina márgenes del body */
+    font-family: Arial, sans-serif; /* Cambia la fuente a una más moderna */
+    background-color: #f0f0f0; /* Color de fondo suave */
+}
+
+/* Contenedor principal */
+main {
+    display: grid;
+    gap: 10px;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-areas:
+        "header header header header header"
+        "aside section section section section"
+        "footer footer footer footer footer";
+    row-gap: 0;
+    column-gap: 0;
+    grid-template-rows: auto 1fr auto; /* Mantiene altura flexible */
+    height: 98vh;
+}
+
+/* Encabezado */
+header {
+    grid-area: header;
+    background-color: #fff; /* Fondo blanco */
+    padding: 20px; /* Espaciado interno */
+    text-align: center; /* Centra el texto */
+}
+
+/* Menú lateral */
+aside {
+    grid-area: aside;
+    background-color: transparent; /* Fondo transparente */
+    padding: 20px; /* Espaciado interno */
+    display: flex;
+    flex-direction: column; /* Disposición vertical */
+    justify-content: flex-start; /* Alinear al inicio */
+    border-radius: 5px; /* Bordes redondeados */
+    height: 100%; /* Asegura que el aside llene su área */
+}
+
+/* Estilo de los elementos dentro del aside */
+aside * {
+    width: 100%; /* Ocupa el 100% del ancho */
+    margin: 10px 0; /* Espaciado entre elementos */
+    background-color: #FFFF; /* Fondo de los elementos del menú */
+    border-radius: 5px; /* Bordes redondeados para los botones */
+    text-align: center; /* Centrar el texto de los elementos */
+    transition: background-color 0.3s; /* Transición suave al cambiar color */
+}
+
+/* Efecto hover para los elementos del menú */
+aside *:hover {
+    background-color: #c3751b; /* Cambio de color al pasar el mouse */
+}
+
+/* Sección principal */
+section {
+    grid-area: section;
+    background-color: #fff; /* Color de fondo blanco */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    padding: 20px; /* Espaciado interno */
+    border-radius: 5px; /* Bordes redondeados */
+}
+
+
+/* Pie de página */
+footer {
+    grid-area: footer;
+    background-color: #fff; /* Fondo blanco */
+    text-align: center; /* Centra el texto */
+    padding: 10px; /* Espaciado interno */
+    position: relative; /* Asegura que el footer esté en la parte inferior */
+    margin-top: auto; /* Mantiene el footer en la parte inferior */
+}

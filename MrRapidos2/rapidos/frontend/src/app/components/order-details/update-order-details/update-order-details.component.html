@@ -1,0 +1,85 @@
+<div class="card">
+    <h2>Update Order Details</h2>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="p-fluid grid">
+        <!-- Order Dropdown -->
+        <div class="field col-12 md:col-6">
+          <label for="id_orden" class="p-d-block">Order</label>
+          <p-dropdown 
+            [options]="orders" 
+            formControlName="id_orden" 
+            placeholder="Select an order" 
+            class="p-d-block">
+          </p-dropdown>
+          <small *ngIf="form.get('id_orden')?.invalid && form.get('id_orden')?.touched" class="p-error">
+            Order is required.
+          </small>
+        </div>
+  
+        <!-- Product Dropdown -->
+        <div class="field col-12 md:col-6">
+          <label for="id_producto" class="p-d-block">Product</label>
+          <p-dropdown 
+            [options]="products" 
+            formControlName="id_producto" 
+            placeholder="Select a product" 
+            class="p-d-block">
+          </p-dropdown>
+          <small *ngIf="form.get('id_producto')?.invalid && form.get('id_producto')?.touched" class="p-error">
+            Product is required.
+          </small>
+        </div>
+  
+        <!-- Quantity -->
+        <div class="field col-12 md:col-6">
+          <label for="cantidad" class="p-d-block">Quantity</label>
+          <input 
+            id="cantidad" 
+            type="number" 
+            pInputText 
+            placeholder="Enter quantity" 
+            formControlName="cantidad" 
+            class="p-d-block">
+          <small *ngIf="form.get('cantidad')?.invalid && form.get('cantidad')?.touched" class="p-error">
+            Quantity must be at least 1.
+          </small>
+        </div>
+  
+        <!-- Unit Price -->
+        <div class="field col-12 md:col-6">
+          <label for="precio_unitario" class="p-d-block">Unit Price</label>
+          <input 
+            id="precio_unitario" 
+            type="number" 
+            pInputText 
+            placeholder="Enter unit price" 
+            formControlName="precio_unitario" 
+            class="p-d-block">
+          <small *ngIf="form.get('precio_unitario')?.invalid && form.get('precio_unitario')?.touched" class="p-error">
+            Unit price must be greater than 0.
+          </small>
+        </div>
+      </div>
+  
+      <!-- Buttons -->
+      <div class="p-d-flex p-jc-end p-mt-4">
+        <button 
+          type="submit" 
+          pButton 
+          label="Update" 
+          icon="pi pi-check" 
+          class="p-button-primary p-mr-2" 
+          [disabled]="form.invalid">
+        </button>
+        <button 
+          type="button" 
+          pButton 
+          label="Cancel" 
+          icon="pi pi-times" 
+          class="p-button-secondary" 
+          (click)="cancel()">
+        </button>
+      </div>
+    </form>
+  </div>
+  
