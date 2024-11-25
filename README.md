@@ -1,18 +1,9 @@
-ProyectoFinal
+# ProyectoFinal
+
+
 Welcome to the ProyectoFinal repository! This project is a full-stack web application designed to manage and display structured data effectively. It enables users to perform CRUD operations, view advanced reports, and interact with a dynamic, responsive interface built with cutting-edge technologies.
 
 
-Table of Contents
-Project Description
-Features
-Technologies Used
-Installation
-Backend Setup
-Frontend Setup
-Usage
-Advanced Search Feature
-Screenshots
-Contributors
 
 
 Project Description
@@ -108,3 +99,8 @@ Contributors
 Roberto Guillot
 Ever Perez
 Kerlon Causado
+
+
+
+License
+This project is licensed under the MIT License. See the LICENSE file for details.
