@@ -12,56 +12,59 @@ import { InputTextModule } from 'primeng/inputtext';
 @Component({
   selector: 'app-crear-cliente',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, ButtonModule, CardModule,InputTextModule,InputGroupModule,],
+  imports: [CommonModule, ReactiveFormsModule, ButtonModule, CardModule, InputTextModule, InputGroupModule],
   templateUrl: './crear-cliente.component.html',
   styleUrls: ['./crear-cliente.component.css'],
 })
 export class CrearClienteComponent implements OnInit {
-  public form: FormGroup;
+  public form: FormGroup;  // FormGroup instance to handle the form
 
   constructor(
-    private formBuilder: FormBuilder,
-    private clienteService: ClienteService,
-    private router: Router
+    private formBuilder: FormBuilder,  // Form builder to create the form group
+    private clienteService: ClienteService,  // Service to interact with the API for client data
+    private router: Router  // Router for navigation after form submission
   ) {
+    // Initialize the form with fields and validation rules
     this.form = this.formBuilder.group({
-      nombre: ['', [Validators.required]],
-      direccion: ['', [Validators.required]],
-      telefono: ['', [Validators.required]],
-      email: ['', [Validators.required, Validators.email]],
+      nombre: ['', [Validators.required]],  // Client's name, required
+      direccion: ['', [Validators.required]],  // Client's address, required
+      telefono: ['', [Validators.required]],  // Client's phone, required
+      email: ['', [Validators.required, Validators.email]],  // Client's email, required and validated as email format
     });
   }
 
   ngOnInit(): void {}
 
+  // Submit the form
   onSubmit(): void {
-    if (this.form.invalid) {
-      alert('Por favor completa todos los campos correctamente.');
+    if (this.form.invalid) {  // If form is invalid, show an alert
+      alert('Please fill in all fields correctly.');
       return;
     }
 
-    const cliente: ClienteI = this.form.value;
+    const cliente: ClienteI = this.form.value;  // Get form data and map to ClienteI model
 
+    // Call service to create the client
     this.clienteService.createCliente(cliente).subscribe({
-      next: () => {
-        alert('Cliente creado exitosamente.');
-        this.router.navigateByUrl('/clientes');
+      next: () => {  // On success
+        alert('Client created successfully.');
+        this.router.navigateByUrl('/clientes');  // Navigate to the clients page
       },
-      error: (err) => {
-        console.error('Error al crear cliente:', err);
-        alert('Ocurrió un error al crear el cliente.');
+      error: (err) => {  // On error
+        console.error('Error creating client:', err);
+        alert('An error occurred while creating the client.');
       },
     });
   }
 
+  // Cancel and navigate back to the clients page
   cancel(): void {
     this.router.navigateByUrl('/clientes');
   }
 
-  // Getters para facilitar la validación en el HTML
+  // Getters for form validation to use in the HTML template
   get nombre() { return this.form.get('nombre'); }
   get direccion() { return this.form.get('direccion'); }
   get telefono() { return this.form.get('telefono'); }
   get email() { return this.form.get('email'); }
 }
-

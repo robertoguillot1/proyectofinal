@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component,OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterModule, Router } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
@@ -10,45 +10,48 @@ import { DetallesOrdenesService } from '../../../services/detalles-ordenes.servi
 @Component({
   selector: 'app-show-order-details',
   standalone: true,
-  imports: [TableModule, ButtonModule, CardModule, RouterModule,CommonModule],
+  imports: [TableModule, ButtonModule, CardModule, RouterModule, CommonModule],
   templateUrl: './show-order-details.component.html',
   styleUrl: './show-order-details.component.css'
 })
-export class ShowOrderDetailsComponent {
-  public orderdetails : DetallesOrdenesI[] = [];
+export class ShowOrderDetailsComponent implements OnInit {
+  public orderdetails: DetallesOrdenesI[] = []; // Array to store order details
 
-  constructor (
-    private orderDetailService:DetallesOrdenesService,
-    private router: Router
-  ){}
+  constructor(
+    private orderDetailService: DetallesOrdenesService, // Service to fetch order details
+    private router: Router // Router for navigation
+  ) {}
 
   ngOnInit(): void {
-    this.fetchOrderDetails(); // Fetches order list on initialization
-}
+    this.fetchOrderDetails(); // Fetches order list on component initialization
+  }
 
-fetchOrderDetails(): void {
-  this.orderDetailService.getAllDetallesOrdenes().subscribe({
-    next: (data) => {
-      this.orderdetails = data; // Assign the data to the orders array
-    },
-    error: (err) => {
-      console.error('Error fetching orders:', err);
-    }
-  });
-}
-
-/**
-   * Delete an order by its ID.
-   * @param id - Order ID to delete
+  /**
+   * Fetches the order details from the backend.
    */
-deleteOrderDetails(id: number): void {
-  this.orderDetailService.deleteDetallesOrden(id).subscribe({
-    next: () => {
-      this.fetchOrderDetails(); // Refresh the order list after deletion
-    },
-    error: (err) => {
-      console.error(`Error deleting order with ID ${id}:`, err);
-    }
-  });
-}
+  fetchOrderDetails(): void {
+    this.orderDetailService.getAllDetallesOrdenes().subscribe({
+      next: (data) => {
+        this.orderdetails = data; // Assign the fetched data to the array
+      },
+      error: (err) => {
+        console.error('Error fetching order details:', err); // Error handling
+      }
+    });
+  }
+
+  /**
+   * Deletes an order detail by its ID.
+   * @param id - ID of the order detail to delete
+   */
+  deleteOrderDetails(id: number): void {
+    this.orderDetailService.deleteDetallesOrden(id).subscribe({
+      next: () => {
+        this.fetchOrderDetails(); // Refresh the list after deletion
+      },
+      error: (err) => {
+        console.error(`Error deleting order detail with ID ${id}:`, err); // Error handling
+      }
+    });
+  }
 }

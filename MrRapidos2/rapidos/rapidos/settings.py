@@ -25,13 +25,13 @@ SECRET_KEY = 'django-insecure-&l()%6@akh-x)!vk=duxn=2qdxg4l*viy*vhbbau=(0bldmqyz
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']  # Agregar hosts permitidos para pruebas locales
 
 
 # Application definition
 
 INSTALLED_APPS = [
-   'django.contrib.admin',
+    'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -48,21 +48,23 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    'corsheaders.middleware.CorsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',  # CORS middleware debe estar antes de CommonMiddleware
     'django.middleware.common.CommonMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    
 ]
-CORS_ORIGIN_ALLOW_ALL = False
+
+# Configuración de CORS
+CORS_ORIGIN_ALLOW_ALL = True
 CORS_ORIGIN_WHITELIST = (
     'http://localhost:4200',
-)
+    'http://127.0.0.1:4200',  # Origen del frontend Angular
+
+) # Permitir envío de cookies o credenciales si es necesario
 
 ROOT_URLCONF = 'rapidos.urls'
 
@@ -91,15 +93,16 @@ WSGI_APPLICATION = 'rapidos.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'rapidoss',
+        'NAME': 'BDrapidos',
         'USER': 'admin',
-        'PASSWORD': 'GQuin1118.',
-        'HOST': '127.0.0.1',
-        'PORT': '3306'
-
+        'PASSWORD': 'ComplexPassw0rd!',
+        'HOST': '172.22.135.245',
+        'PORT': '3306',
+        'OPTIONS': {
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
+        }
     }
 }
-
 
 
 # Password validation
@@ -123,6 +126,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
+
 LANGUAGE_CODE = 'es'
 
 TIME_ZONE = 'America/Bogota'
@@ -135,7 +139,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field

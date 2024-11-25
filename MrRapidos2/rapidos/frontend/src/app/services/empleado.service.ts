@@ -4,35 +4,35 @@ import { Observable } from 'rxjs';
 import { EmpleadoI } from '../models/empleado';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root',  // Makes the service available globally throughout the application
 })
 export class EmpleadoService {
-  private baseUrl = 'http://127.0.0.1:8000/empleados/'; // Base URL for API
+  private baseUrl = 'http://127.0.0.1:8000/empleados/';  // Base URL for the 'empleados' API
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {}  // HttpClient is injected to make HTTP requests
 
-  // Get all employees
+  // Method to fetch all employees from the API
   getAllEmpleados(): Observable<EmpleadoI[]> {
-    return this.http.get<EmpleadoI[]>(this.baseUrl);
+    return this.http.get<EmpleadoI[]>(this.baseUrl);  // Makes a GET request to retrieve all employees
   }
 
-  // Get a specific employee by ID
+  // Method to fetch a specific employee by ID from the API
   getEmpleadoById(id: number): Observable<EmpleadoI> {
-    return this.http.get<EmpleadoI>(`${this.baseUrl}${id}/`);
+    return this.http.get<EmpleadoI>(`${this.baseUrl}${id}/`);  // Makes a GET request to retrieve an employee by ID
   }
 
-  // Create a new employee
+  // Method to create a new employee by sending data through a POST request
   createEmpleado(empleado: EmpleadoI): Observable<EmpleadoI> {
-    return this.http.post<EmpleadoI>(this.baseUrl, empleado);
+    return this.http.post<EmpleadoI>(this.baseUrl, empleado);  // Sends a POST request with the new employee data
   }
 
-  // Update an existing employee
+  // Method to update an existing employee by ID through a PUT request
   updateEmpleado(id: number, empleado: EmpleadoI): Observable<EmpleadoI> {
-    return this.http.put<EmpleadoI>(`${this.baseUrl}${id}/`, empleado);
+    return this.http.put<EmpleadoI>(`${this.baseUrl}${id}/`, empleado);  // Sends a PUT request to update an employee by ID
   }
 
-  // Delete an employee by ID
+  // Method to delete an employee by ID
   deleteEmpleado(id: number): Observable<any> {
-    return this.http.delete(`${this.baseUrl}${id}/`);
+    return this.http.delete(`${this.baseUrl}${id}/`);  // Sends a DELETE request to remove an employee by ID
   }
 }

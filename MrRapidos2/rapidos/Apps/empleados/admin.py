@@ -1,14 +1,14 @@
 from django.contrib import admin
 from Apps.empleados.models import Empleado
 
-# Registro del modelo Empleado en el administrador
+# Registering the Empleado model in the admin panel
 @admin.register(Empleado)
 class EmpleadoAdmin(admin.ModelAdmin):
-    # Configura las columnas que se mostrarán en la lista de empleados
+    # Configures the columns to display in the employee list
     list_display = ('id', 'nombre', 'telefono', 'direccion', 'rol')
-    # Habilita un campo de búsqueda para facilitar la búsqueda por nombre y rol
+    # Enables a search field to facilitate searching by name and role
     search_fields = ('nombre', 'rol')
-    # Agrega filtros laterales para roles y direcciones
-    list_filter = ('rol', 'direccion')  # Puedes agregar más filtros si es necesario
-    # Habilita que ciertos campos sean editables directamente desde la lista
+    # Adds filters on the side panel for role and address
+    list_filter = ('rol', 'direccion')  # You can add more filters if needed
+    # Enables inline editing of certain fields directly in the list
     list_editable = ('telefono', 'direccion', 'rol')

@@ -24,8 +24,8 @@ import { ProductoI } from '../../../models/producto';
     ButtonModule,
     InputTextModule,
     DropdownModule,
-    InputNumberModule, // Agregar módulo para InputNumber
-    CheckboxModule, // Agregar módulo para Checkbox
+    InputNumberModule, // Add module for InputNumber
+    CheckboxModule, // Add module for Checkbox
     RouterModule
   ],
   templateUrl: './create-order-details.component.html',

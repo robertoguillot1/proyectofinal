@@ -1,8 +1,7 @@
 export interface PagoI {
-    id?: number;
-    id_orden: number;
-    metodo_pago: string;
-    fecha_pago: string;
-    valor_pago: number;
-  }
-  
+  id?: number; // Optional: Unique identifier for the payment (used when editing an existing payment)
+  id_orden: number; // The ID of the order associated with the payment
+  metodo_pago: string; // The payment method used (e.g., 'Nequi', 'Daviplata', 'Cash', 'Credit Card')
+  fecha_pago: string; // The date when the payment was made
+  valor_pago: number; // The amount paid
+}

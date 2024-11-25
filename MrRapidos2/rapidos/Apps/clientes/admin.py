@@ -1,15 +1,17 @@
-
 from django.contrib import admin
 from Apps.clientes.models import Cliente
 
-# Registro del modelo Cliente en el administrador
+# Register the Cliente model in the Django admin
 @admin.register(Cliente)
 class ClienteAdmin(admin.ModelAdmin):
-    # Configura las columnas que se mostrarán en la lista de clientes
+    # Configure the columns that will be displayed in the client list view
     list_display = ('id', 'nombre', 'direccion', 'telefono', 'email')
-    # Habilita un campo de búsqueda para facilitar la búsqueda por nombre y correo electrónico
+    
+    # Enable search functionality to search by name and email
     search_fields = ('nombre', 'email')
-    # Agrega filtros laterales para mejorar la experiencia de búsqueda
-    list_filter = ('direccion',)  # Puedes agregar más campos si es útil
-    # Habilita que ciertos campos sean editables directamente desde la lista
-    list_editable = ('telefono', 'direccion')  # Editables en la lista principal
+    
+    # Add sidebar filters to improve search experience
+    list_filter = ('direccion',)  # You can add more fields if needed
+    
+    # Allow certain fields to be edited directly from the list view
+    list_editable = ('telefono', 'direccion')  # Editable fields directly in the list view
